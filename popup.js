@@ -81,12 +81,11 @@ async function scan() {
 }
 
 const HISTORY_KEY = "closedHistory";
-const HISTORY_MAX = 2000;
 
 async function appendHistory(entries) {
   if (entries.length === 0) return;
   const { [HISTORY_KEY]: existing = [] } = await chrome.storage.local.get(HISTORY_KEY);
-  const merged = entries.concat(existing).slice(0, HISTORY_MAX);
+  const merged = entries.concat(existing);
   await chrome.storage.local.set({ [HISTORY_KEY]: merged });
 }
 
