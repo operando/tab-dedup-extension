@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tab Dedup — 履歴</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px 16px 48px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 16px;
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .toolbar input[type="search"] {
+        flex: 1;
+        min-width: 200px;
+        padding: 6px 10px;
+        font-size: 13px;
+        border: 1px solid #888;
+        border-radius: 6px;
+      }
+      button {
+        padding: 6px 12px;
+        font-size: 13px;
+        border: 1px solid #888;
+        background: #f7f7f7;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #eaeaea;
+      }
+      button.danger {
+        background: #fff;
+        color: #c00;
+        border-color: #c00;
+      }
+      button.danger:hover {
+        background: #fee;
+      }
+      #count {
+        font-size: 12px;
+        color: #666;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        table-layout: fixed;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px 6px;
+        border-bottom: 1px solid #ddd;
+        vertical-align: top;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      th {
+        font-size: 12px;
+        font-weight: 600;
+        color: #555;
+        border-bottom: 2px solid #ccc;
+      }
+      th.time { width: 160px; }
+      th.actions { width: 110px; }
+      td.url a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      td.url a:hover {
+        text-decoration: underline;
+      }
+      td.title {
+        color: #333;
+      }
+      tr.empty td {
+        text-align: center;
+        color: #888;
+        padding: 32px 0;
+      }
+      .url-wrap {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>閉じたタブの履歴</h1>
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="URLまたはタイトルで絞り込み" />
+      <span id="count"></span>
+      <button id="export">JSONエクスポート</button>
+      <button id="clear" class="danger">履歴を全消去</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="time">閉じた日時</th>
+          <th>タイトル / URL</th>
+          <th class="actions">操作</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <script src="history.js"></script>
+  </body>
+</html>
